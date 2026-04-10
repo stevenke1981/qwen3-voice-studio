@@ -34,11 +34,43 @@ _APP_THEME = gr.themes.Soft(
     block_background_fill_dark="*neutral_900",
     input_background_fill="*neutral_800",
     input_background_fill_dark="*neutral_800",
+    # 輸入文字強制白色，避免深色背景下看不見
+    input_text_size="*text_md",
 )
 
 _APP_CSS = """
 .gradio-container { max-width: 1280px !important; }
 footer { display: none !important; }
+
+/* 輸入框文字顏色 */
+textarea,
+input[type="text"],
+input[type="number"],
+input[type="search"],
+.block textarea,
+.block input {
+    color: #e8eaed !important;
+    caret-color: #e8eaed !important;
+}
+
+/* Dropdown 選項文字 */
+.wrap-inner span,
+.svelte-select span,
+ul.options li {
+    color: #e8eaed !important;
+}
+
+/* Textbox placeholder */
+textarea::placeholder,
+input::placeholder {
+    color: #9aa0a6 !important;
+    opacity: 1 !important;
+}
+
+/* 唯讀輸出框同樣需要可見 */
+.block .output-class textarea {
+    color: #e8eaed !important;
+}
 """
 
 
