@@ -1,0 +1,13 @@
+# GPU 推論套件
+#
+# 安裝方式：
+#   pip install qwen-tts --no-deps
+#   pip install transformers==4.57.6
+#   pip install torch>=2.1 torchaudio
+#
+# 或一次性：
+#   pip install -r requirements-gpu.txt --no-deps
+qwen-tts
+transformers==4.57.6
+torch>=2.1
+torchaudio>=2.1
