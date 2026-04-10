@@ -3,10 +3,8 @@
 
 param(
     [int]$Port = 7860,
-    [int]$ServerPort = 8990,
     [switch]$Share,
-    [switch]$Demo,
-    [switch]$NoServer
+    [switch]$Demo
 )
 
 Set-StrictMode -Version Latest
@@ -41,10 +39,9 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 # 4. 組裝啟動參數
-$appArgs = @("--port", $Port, "--server-port", $ServerPort)
-if ($Share)    { $appArgs += "--share" }
-if ($Demo)     { $appArgs += "--demo" }
-if ($NoServer) { $appArgs += "--no-server" }
+$appArgs = @("--port", $Port)
+if ($Share) { $appArgs += "--share" }
+if ($Demo)  { $appArgs += "--demo" }
 
 # 5. 啟動應用
 Write-Host "[START] 啟動 Qwen3 Voice Studio (port: $Port)..." -ForegroundColor Green
