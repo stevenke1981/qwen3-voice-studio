@@ -42,7 +42,15 @@ _APP_CSS = """
 .gradio-container { max-width: 1280px !important; }
 footer { display: none !important; }
 
-/* 輸入框文字顏色 */
+/* ── 全域文字可見性 ── */
+
+/* label / 標題 */
+label, .block label span, .form label span,
+.label-wrap span, span.svelte-1gfkn6j {
+    color: #e8eaed !important;
+}
+
+/* 輸入框本文 */
 textarea,
 input[type="text"],
 input[type="number"],
@@ -53,24 +61,40 @@ input[type="search"],
     caret-color: #e8eaed !important;
 }
 
-/* Dropdown 選項文字 */
-.wrap-inner span,
-.svelte-select span,
-ul.options li {
+/* Dropdown 選中值 & 選項 */
+.wrap-inner span, .svelte-select span,
+ul.options li, .choices__item,
+[data-testid="dropdown"] span {
     color: #e8eaed !important;
 }
 
-/* Textbox placeholder */
-textarea::placeholder,
-input::placeholder {
+/* Placeholder */
+textarea::placeholder, input::placeholder {
     color: #9aa0a6 !important;
     opacity: 1 !important;
 }
 
-/* 唯讀輸出框同樣需要可見 */
-.block .output-class textarea {
+/* Accordion 標題 */
+.accordion-header button span,
+button.accordion-arrow span {
     color: #e8eaed !important;
 }
+
+/* Markdown 內文 */
+.prose p, .prose li, .prose h1, .prose h2, .prose h3,
+.prose h4, .md p, .md li, .md h1, .md h2, .md h3 {
+    color: #e8eaed !important;
+}
+
+/* Tab 標籤 */
+button[role="tab"] { color: #c4c7cf !important; }
+button[role="tab"][aria-selected="true"] { color: #fff !important; }
+
+/* Checkbox & Radio label */
+.checkbox-label span, .radio-label span { color: #e8eaed !important; }
+
+/* Slider label */
+.range-slider span { color: #e8eaed !important; }
 """
 
 

@@ -194,11 +194,13 @@ def build_workflow_tab(
                 s1_text = gr.Textbox(
                     label="設計用合成文字（用於試聽音色）",
                     placeholder="例：這是一段測試語音。",
+                    value="這是聲音設計的試聽範例，請聆聽音色效果。",
                     lines=3, scale=2,
                 )
                 s1_instruct = gr.Textbox(
                     label="音色描述",
                     placeholder="例：溫柔的女聲，帶有輕微磁性，語速稍慢",
+                    value="溫柔親切的女聲，語調自然，語速適中，帶有輕微磁性。",
                     lines=3, scale=2,
                 )
             s1_btn = gr.Button("▶ 執行 Step 1", variant="primary")
@@ -213,6 +215,7 @@ def build_workflow_tab(
                 s2_text = gr.Textbox(
                     label="克隆目標文字",
                     placeholder="輸入要用克隆音色合成的文字...",
+                    value="以上是聲音設計的效果，現在我們用同樣的音色來合成這段新文字。",
                     lines=4, scale=3,
                 )
                 s2_ref_upload = gr.File(
@@ -230,6 +233,7 @@ def build_workflow_tab(
             s3_texts = gr.Textbox(
                 label="批量文字（每行一段）",
                 placeholder="第一段文字\n第二段文字\n第三段文字...",
+                value="第一章：故事的開始，一切都從這裡展開。\n第二章：主角踏上了未知的旅程。\n第三章：困難與挑戰接踵而來。",
                 lines=8,
             )
             srt_dd = gr.Dropdown(

@@ -87,6 +87,7 @@ def build_custom_voice_tab(
                 text_input = gr.Textbox(
                     label=t("tts_input_text", "zh-TW"),
                     placeholder=t("tts_placeholder", "zh-TW"),
+                    value="你好，歡迎使用 Qwen3 Voice Studio！這是一段測試語音合成的文字。",
                     lines=6, max_lines=20,
                 )
                 components["cv_text"] = text_input

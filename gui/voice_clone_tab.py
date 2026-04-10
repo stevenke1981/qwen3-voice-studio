@@ -96,6 +96,7 @@ def build_voice_clone_tab(
                 text_input = gr.Textbox(
                     label="合成文字",
                     placeholder="輸入要合成的文字內容...",
+                    value="這是聲音克隆測試，模型將模仿參考音頻中的說話風格。",
                     lines=5,
                 )
                 components["vc_text"] = text_input

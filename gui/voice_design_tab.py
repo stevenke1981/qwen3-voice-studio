@@ -77,6 +77,7 @@ def build_voice_design_tab(
                 text_input = gr.Textbox(
                     label="合成文字",
                     placeholder="輸入要合成的文字內容...",
+                    value="歡迎使用聲音設計功能，您可以用文字描述您想要的聲音風格。",
                     lines=5,
                 )
                 components["vd_text"] = text_input
@@ -85,6 +86,7 @@ def build_voice_design_tab(
                 instruct_input = gr.Textbox(
                     label="音色描述（instruct）",
                     placeholder="描述你想要的聲音，例如：溫柔的女聲，語速稍慢...",
+                    value="一位溫柔親切的女聲，語調自然流暢，語速適中。",
                     lines=5,
                 )
                 components["vd_instruct"] = instruct_input

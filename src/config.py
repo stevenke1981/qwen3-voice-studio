@@ -12,7 +12,7 @@ _CONFIG_FILE = _CONFIG_DIR / "config.json"
 
 # ── 模型 ID 常數 ──────────────────────────────────────────────────────────────
 MODEL_CUSTOM_VOICE  = "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice"
-MODEL_VOICE_DESIGN  = "Qwen/Qwen3-TTS-12Hz-0.6B-VoiceDesign"
+MODEL_VOICE_DESIGN  = "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign"   # 0.6B 無此型號
 MODEL_BASE          = "Qwen/Qwen3-TTS-12Hz-0.6B-Base"
 
 # 1.7B 大模型（高品質，需更多 VRAM）
@@ -21,9 +21,9 @@ MODEL_VOICE_DESIGN_LG = "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign"
 MODEL_BASE_LG         = "Qwen/Qwen3-TTS-12Hz-1.7B-Base"
 
 ALL_MODEL_IDS = [
-    MODEL_CUSTOM_VOICE,
-    MODEL_VOICE_DESIGN,
-    MODEL_BASE,
+    MODEL_CUSTOM_VOICE,   # 0.6B
+    MODEL_BASE,           # 0.6B
+    MODEL_VOICE_DESIGN,   # 1.7B（0.6B 無此型號）
     MODEL_CUSTOM_VOICE_LG,
     MODEL_VOICE_DESIGN_LG,
     MODEL_BASE_LG,

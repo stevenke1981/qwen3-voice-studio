@@ -99,7 +99,7 @@ class TTSEngine:
             kwargs: dict[str, Any] = {
                 "text": text,
                 "language": language.lower(),
-                "speaker": speaker,
+                "speaker": speaker.lower(),  # API 要求小寫
             }
             if instruct:
                 kwargs["instruct"] = instruct
