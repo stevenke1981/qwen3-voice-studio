@@ -14,6 +14,17 @@ import logging
 import sys
 
 
+class _SuppressSoX(logging.Filter):
+    """Suppress the 'SoX could not be found' warning from librosa.
+
+    SoX is an optional backend for librosa; its absence does not affect
+    qwen-tts inference in any way.
+    """
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        return "SoX could not be found" not in record.getMessage()
+
+
 class _SuppressWin10054(logging.Filter):
     """Suppress the harmless WinError 10054 asyncio noise on Windows.
 
@@ -37,6 +48,8 @@ logging.basicConfig(
 
 if sys.platform == "win32":
     logging.getLogger("asyncio").addFilter(_SuppressWin10054())
+
+logging.getLogger("sox").addFilter(_SuppressSoX())
 
 logger = logging.getLogger("qwen3-voice-studio")
 
