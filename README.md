@@ -11,6 +11,8 @@
 - 📦 **批量合成** — 上傳 .txt/.md 一鍵生成多段 WAV + SRT
 - 📝 **SRT 字幕** — sentence-level 自動生成（均勻分配 / 語速估算）
 - 🌐 **雙語 GUI** — 繁體中文（預設）/ English
+- 🔤 **簡繁轉換** — 內建 OpenCC 一鍵互換，輸入文字框下方點擊即可
+- 💡 **中文輸入提示** — 繁體字 → 生成廣東話，簡體字 → 生成普通話
 - 🖥️ **CUDA 推論** — RTX 3060 Ti 等 NVIDIA GPU 全速推論
 
 ## 快速開始
@@ -35,6 +37,8 @@ bash start.sh
 uv sync
 uv run python app.py
 ```
+
+> 💡 `hf-xet` 已內建於相依套件中，可加速 HuggingFace 模型下載（Xet Storage chunk 去重）。
 
 ### 3. 首次使用各 Tab
 
@@ -81,7 +85,7 @@ Step 3  Batch Export  →  批量套用克隆音色到多段文字，匯出 WAV 
 
 ```bash
 uv run ruff check . --fix  # Lint
-uv run pytest -v           # 測試
+uv run pytest -v           # 測試（160+ 案例）
 ```
 
 ## 授權
