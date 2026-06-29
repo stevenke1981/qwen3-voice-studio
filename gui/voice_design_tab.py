@@ -68,7 +68,8 @@ def build_voice_design_tab(
 
         gr.Markdown(
             "**描述音色合成** — 用自然語言描述你想要的聲音風格，模型會依描述生成對應音色的語音。\n\n"
-            "模型：`Qwen3-TTS-12Hz-0.6B-VoiceDesign`"
+            "模型：`Qwen3-TTS-12Hz-0.6B-VoiceDesign`\n\n"
+            "> 💡 **中文輸入提示**：使用**繁體字**會預設生成**廣東話**，使用**簡體字**則生成**中文（普通話）**。"
         )
 
         with gr.Row():

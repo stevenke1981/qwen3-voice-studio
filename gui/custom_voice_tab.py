@@ -79,7 +79,8 @@ def build_custom_voice_tab(
 
         gr.Markdown(
             "**具名音色合成** — 從內建音色庫選擇說話者，搭配語言與風格指令生成語音。\n\n"
-            "模型：`Qwen3-TTS-12Hz-0.6B-CustomVoice`"
+            "模型：`Qwen3-TTS-12Hz-0.6B-CustomVoice`\n\n"
+            "> 💡 **中文輸入提示**：使用**繁體字**會預設生成**廣東話**，使用**簡體字**則生成**中文（普通話）**。"
         )
 
         with gr.Row():
