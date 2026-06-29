@@ -289,7 +289,7 @@ def build_app(
     default_locale: str = "zh-TW",
 ) -> gr.Blocks:
     """組裝完整 Gradio App."""
-    with gr.Blocks(title="Qwen3 Voice Studio", theme=_APP_THEME, css=_APP_CSS) as app:
+    with gr.Blocks(title="Qwen3 Voice Studio") as app:
         locale_state = gr.State(value=default_locale)
 
         # ── Header ──────────────────────────────────────────────────────────

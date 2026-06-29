@@ -29,6 +29,7 @@ dependencies = [
     "aiofiles>=24.1",
     "psutil>=5.9",
     "yt-dlp>=2026.3",
+    "hf-xet>=1.4.3",
 ]
 
 [project.optional-dependencies]
