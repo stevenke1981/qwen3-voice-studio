@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING
 
 import gradio as gr
 
@@ -16,9 +16,9 @@ from gui.voice_clone_tab import build_voice_clone_tab
 from gui.voice_design_tab import build_voice_design_tab
 from gui.workflow_tab import build_workflow_tab
 from gui.youtube_tab import build_youtube_tab
-from src.i18n import t
 
 if TYPE_CHECKING:
+    from src.config import AppSettings
     from src.error_handler import ErrorHandler
     from src.history import HistoryManager
     from src.multi_engine import ModelPool
@@ -285,7 +285,7 @@ def build_app(
     voice_lib: VoiceLibrary | None = None,
     history_mgr: HistoryManager | None = None,
     error_handler: ErrorHandler | None = None,
-    settings: Any = None,
+    settings: AppSettings | None = None,
     default_locale: str = "zh-TW",
 ) -> gr.Blocks:
     """組裝完整 Gradio App."""

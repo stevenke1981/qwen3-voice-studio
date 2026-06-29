@@ -16,7 +16,7 @@ dependencies = [
     # qwen-tts 0.1.1 requires transformers==4.57.3; hub must be <1.0
     "huggingface-hub>=0.34.0,<1.0",
     "transformers==4.57.3",
-    "qwen-tts",
+    "qwen-tts==0.1.1",
     "librosa>=0.10",
     "scipy>=1.10",
     "einops>=0.7",

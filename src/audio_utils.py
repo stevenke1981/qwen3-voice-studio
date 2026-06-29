@@ -61,19 +61,17 @@ def split_text_to_sentences(text: str) -> list[str]:
 def format_srt_time(seconds: float) -> str:
     """將秒數轉為 SRT 時間格式 HH:MM:SS,mmm.
 
+    委派至 utils.srt_generator.format_srt_timestamp 作為唯一實作來源。
+
     Args:
         seconds: 秒數（浮點）
 
     Returns:
         格式化時間字串
     """
-    if seconds < 0:
-        seconds = 0.0
-    hours = int(seconds // 3600)
-    minutes = int((seconds % 3600) // 60)
-    secs = int(seconds % 60)
-    millis = int((seconds % 1) * 1000)
-    return f"{hours:02d}:{minutes:02d}:{secs:02d},{millis:03d}"
+    from utils.srt_generator import format_srt_timestamp
+
+    return format_srt_timestamp(seconds)
 
 
 def save_wav_bytes(audio_data: bytes, output_path: str | Path) -> Path:

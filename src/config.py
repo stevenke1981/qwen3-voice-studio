@@ -30,7 +30,7 @@ ALL_MODEL_IDS = [
 ]
 
 DEFAULT_DEVICE = "cuda:0"  # GPU 推論預設；無 GPU 時改為 "cpu"
-DEFAULT_PORT   = 8990
+DEFAULT_PORT   = 7860
 
 BUILTIN_SPEAKERS = [
     "Vivian",

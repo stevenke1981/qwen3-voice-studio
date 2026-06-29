@@ -10,12 +10,12 @@ from src.config import BUILTIN_SPEAKERS, SUPPORTED_TTS_LANGUAGES, AppSettings, T
 class TestTTSSettings:
     def test_defaults(self) -> None:
         s = TTSSettings()
-        assert s.model_path == "Qwen/Qwen3-TTS-12Hz-0.6B-Base"
+        assert s.base_model == "Qwen/Qwen3-TTS-12Hz-0.6B-Base"
         assert s.srt_mode == "uniform"
         assert s.zh_cpm == 160
         assert s.en_wpm == 150
         assert s.device == "cuda:0"
-        assert s.port == 8990
+        assert s.port == 7860
 
     def test_custom_values(self) -> None:
         s = TTSSettings(device="cpu", port=9999)

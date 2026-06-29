@@ -19,14 +19,12 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 import gradio as gr
-import numpy as np
+import soundfile as sf
 
 from src.audio_utils import to_gradio_audio
-from src.config import SUPPORTED_TTS_LANGUAGES
 from utils.srt_generator import generate_srt
 
 if TYPE_CHECKING:
-    from src.error_handler import ErrorHandler
     from src.multi_engine import ModelPool
 
 
@@ -48,7 +46,6 @@ def _step1_design(
         audio_out = to_gradio_audio(result.audio, result.sample_rate)
 
         # 儲存為暫存 WAV 供 Step 2 使用
-        import soundfile as sf
         buf = io.BytesIO()
         sf.write(buf, result.audio, result.sample_rate, format="WAV")
         buf.seek(0)
@@ -87,7 +84,6 @@ def _step2_clone(
         return None, None, "❌ 模型未載入"
 
     try:
-        import soundfile as sf
         data, sr = sf.read(ref_path, dtype="float32")
         if data.ndim > 1:
             data = data.mean(axis=1)
@@ -124,7 +120,7 @@ def _step3_batch(
     error_handler: Any | None,
 ) -> tuple[list[str] | None, str]:
     """Step 3: 批量套用克隆音色匯出多段音頻."""
-    lines = [l.strip() for l in batch_texts.strip().splitlines() if l.strip()]
+    lines = [line.strip() for line in batch_texts.strip().splitlines() if line.strip()]
     if not lines:
         return None, "❌ 請在文字框中輸入要合成的段落（每行一段）"
     if not cloned_ref_path:
@@ -133,7 +129,6 @@ def _step3_batch(
         return None, "❌ 模型未載入"
 
     try:
-        import soundfile as sf
         ref_data, ref_sr = sf.read(cloned_ref_path, dtype="float32")
         if ref_data.ndim > 1:
             ref_data = ref_data.mean(axis=1)
@@ -148,7 +143,6 @@ def _step3_batch(
                 ref_audio=(ref_data, ref_sr), x_vector_only=True,
             )
             wav_path = output_dir / f"{i:04d}.wav"
-            import soundfile as sf
             sf.write(str(wav_path), result.audio, result.sample_rate)
             output_files.append(str(wav_path))
 

@@ -6,3 +6,5 @@ __pycache__/
 test_output.wav
 *.egg-info/
 .claude/
+.opencode/
+.codebase-memory/

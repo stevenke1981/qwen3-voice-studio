@@ -223,7 +223,7 @@ class TTSEngine:
         """取得此模型支援的語言列表."""
         if self._model and callable(getattr(self._model.model, "get_supported_languages", None)):
             raw = self._model.model.get_supported_languages()
-            return [l.capitalize() for l in raw] if raw else []
+            return [lang.capitalize() for lang in raw] if raw else []
         return []
 
     def unload(self) -> None:

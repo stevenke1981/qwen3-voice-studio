@@ -4,8 +4,36 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
+from typing import Any
 
 logger = logging.getLogger(__name__)
+
+# ── NVML 惰性初始化（僅執行一次） ─────────────────────────────────────────────
+_NVML_INITIALIZED: bool = False
+_NVML_HANDLE: Any = None
+
+
+def _ensure_nvml() -> bool:
+    """確保 NVML 已初始化（惰性、單次）。
+
+    Returns:
+        True 表示 NVML 可用，False 表示不可用或初始化失敗。
+    """
+    global _NVML_INITIALIZED, _NVML_HANDLE
+
+    if _NVML_INITIALIZED:
+        return _NVML_HANDLE is not None
+
+    _NVML_INITIALIZED = True
+    try:
+        import pynvml
+
+        pynvml.nvmlInit()
+        _NVML_HANDLE = pynvml.nvmlDeviceGetHandleByIndex(0)
+        return True
+    except Exception:
+        _NVML_HANDLE = None
+        return False
 
 
 @dataclass(frozen=True)
@@ -30,22 +58,20 @@ def get_system_metrics(model_loaded: bool = False, last_latency: float = 0.0) ->
     gpu_mem_used = 0.0
     gpu_mem_total = 0.0
 
-    try:
-        import pynvml
+    if _ensure_nvml():
+        try:
+            import pynvml
 
-        pynvml.nvmlInit()
-        handle = pynvml.nvmlDeviceGetHandleByIndex(0)
-        gpu_name = pynvml.nvmlDeviceGetName(handle)
-        if isinstance(gpu_name, bytes):
-            gpu_name = gpu_name.decode()
-        util = pynvml.nvmlDeviceGetUtilizationRates(handle)
-        gpu_util = float(util.gpu)
-        mem = pynvml.nvmlDeviceGetMemoryInfo(handle)
-        gpu_mem_used = mem.used / (1024 * 1024)
-        gpu_mem_total = mem.total / (1024 * 1024)
-        pynvml.nvmlShutdown()
-    except Exception:
-        pass
+            gpu_name = pynvml.nvmlDeviceGetName(_NVML_HANDLE)
+            if isinstance(gpu_name, bytes):
+                gpu_name = gpu_name.decode()
+            util = pynvml.nvmlDeviceGetUtilizationRates(_NVML_HANDLE)
+            gpu_util = float(util.gpu)
+            mem = pynvml.nvmlDeviceGetMemoryInfo(_NVML_HANDLE)
+            gpu_mem_used = mem.used / (1024 * 1024)
+            gpu_mem_total = mem.total / (1024 * 1024)
+        except Exception:
+            pass
 
     cpu_pct = 0.0
     ram_used = 0.0

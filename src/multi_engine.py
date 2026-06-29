@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass, field
+from pathlib import Path
 
 from src.tts_engine import TTSEngine
 
@@ -53,6 +54,7 @@ class ModelPool:
 
         Raises:
             ValueError: 不支援的 kind
+            RuntimeError: 模型無法下載且本地不存在
         """
         if kind not in ("custom_voice", "voice_design", "base"):
             raise ValueError(f"不支援的模型類型: {kind!r}，請使用 custom_voice / voice_design / base")
@@ -62,7 +64,10 @@ class ModelPool:
             model_path = getattr(self, path_attr)
             logger.info("ModelPool: 載入 %s 模型 %s", kind, model_path)
             engine = TTSEngine(model_path=model_path, device=self.device)
+
+            # 先確保模型可用，下載失敗會拋出具體異常
             self._ensure_downloaded(model_path)
+
             engine.load_model()
             self._engines[kind] = engine
             logger.info("ModelPool: %s 已就緒", kind)
@@ -70,12 +75,29 @@ class ModelPool:
         return self._engines[kind]
 
     def _ensure_downloaded(self, model_path: str) -> None:
-        """確保模型已下載到本地快取."""
+        """確保模型已下載到本地快取。
+
+        Raises:
+            RuntimeError: 模型無法取得（非 HF 模型路徑且非本地存在）
+        """
         from src.model_manager import ensure_tts_model_available
+
+        # 如果是本地路徑不需要下載
+        if Path(model_path).exists():
+            return
+
         try:
             ensure_tts_model_available(model_path)
         except Exception as e:
-            logger.warning("模型下載失敗（將嘗試從快取載入）: %s", e)
+            logger.error("模型下載失敗: %s", e)
+            # 檢查 HF 快取是否有此模型
+            if not _is_model_in_hf_cache(model_path):
+                raise RuntimeError(
+                    f"模型 {model_path} 無法下載且本地不存在。"
+                    f"請檢查網路連線或手動下載後指定本地路徑。"
+                ) from e
+            logger.warning("模型從 HF 快取載入（下載曾有問題但快取存在）: %s", model_path)
+
 
     def is_loaded(self, kind: str) -> bool:
         """檢查指定 kind 是否已載入."""
@@ -97,3 +119,17 @@ class ModelPool:
         """卸載所有已載入的模型."""
         for k in list(self._engines.keys()):
             self.unload(k)
+
+
+def _is_model_in_hf_cache(repo_id: str) -> bool:
+    """檢查 HuggingFace 快取中是否有指定 repo_id。"""
+    try:
+        from huggingface_hub import scan_cache_dir
+
+        cache_info = scan_cache_dir()
+        for repo in cache_info.repos:
+            if repo.repo_id == repo_id:
+                return True
+    except Exception:
+        pass
+    return False

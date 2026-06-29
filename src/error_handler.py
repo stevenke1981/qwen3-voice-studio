@@ -41,11 +41,9 @@ class ErrorHandler:
             message=message,
             detail=detail,
         )
-        # 不可變 list 操作：建立新 list
-        new_records = [*self._records, record]
-        if len(new_records) > self.max_records:
-            new_records = new_records[-self.max_records :]
-        self._records = new_records
+        self._records.append(record)
+        if len(self._records) > self.max_records:
+            self._records = self._records[-self.max_records :]
         logger.log(
             logging.getLevelName(level) if isinstance(level, str) else level,
             "%s: %s",

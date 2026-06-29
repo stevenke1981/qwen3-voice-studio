@@ -16,7 +16,6 @@ from src.config import SUPPORTED_TTS_LANGUAGES
 from src.i18n import t
 
 if TYPE_CHECKING:
-    from src.error_handler import ErrorHandler
     from src.multi_engine import ModelPool
 
 

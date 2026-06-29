@@ -4,9 +4,15 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import numpy as np
 import pytest
 
-from src.audio_utils import format_srt_time, read_text_file, split_text_to_sentences
+from src.audio_utils import (
+    format_srt_time,
+    read_text_file,
+    split_text_to_sentences,
+    to_gradio_audio,
+)
 
 
 class TestFormatSrtTime:
@@ -69,3 +75,44 @@ class TestReadTextFile:
         big_file.write_text("x" * (11 * 1024 * 1024))
         with pytest.raises(ValueError, match="10 MB"):
             read_text_file(str(big_file))
+
+
+class TestToGradioAudio:
+    """to_gradio_audio 安全轉換測試."""
+
+    def test_normal_audio(self) -> None:
+        audio = np.array([0.5, -0.3, 0.0, 0.8, -0.9], dtype=np.float32)
+        sr, result = to_gradio_audio(audio, 24000)
+        assert sr == 24000
+        assert result.dtype == np.int16
+        # 最大值應在 int16 範圍內
+        assert result.max() <= 32767
+        assert result.min() >= -32768
+
+    def test_zero_audio_prevents_division_by_zero(self) -> None:
+        """全零音訊不應造成 division-by-zero."""
+        audio = np.zeros(1000, dtype=np.float32)
+        sr, result = to_gradio_audio(audio, 24000)
+        assert sr == 24000
+        assert result.dtype == np.int16
+        assert np.all(result == 0)
+
+    def test_single_sample(self) -> None:
+        audio = np.array([1.0], dtype=np.float32)
+        sr, result = to_gradio_audio(audio, 16000)
+        assert sr == 16000
+        assert result[0] == 32767  # 1.0 → 32767
+
+    def test_clipping(self) -> None:
+        """極大值不應造成溢位."""
+        audio = np.array([2.0, -2.0], dtype=np.float32)
+        sr, result = to_gradio_audio(audio, 24000)
+        assert result[0] <= 32767
+        assert result[1] >= -32768
+
+    def test_float32_preserved_after_conversion(self) -> None:
+        """輸入 float32 陣列，回傳 int16."""
+        audio = np.random.randn(100).astype(np.float32)
+        sr, result = to_gradio_audio(audio, 24000)
+        assert result.dtype == np.int16
+        assert len(result) == 100
