@@ -14,6 +14,7 @@ import gradio as gr
 from src.audio_utils import to_gradio_audio
 from src.config import SUPPORTED_TTS_LANGUAGES
 from src.i18n import t
+from utils.text_converter import to_simplified, to_traditional
 
 if TYPE_CHECKING:
     from src.multi_engine import ModelPool
@@ -81,6 +82,11 @@ def build_voice_design_tab(
                     lines=5,
                 )
                 components["vd_text"] = text_input
+                with gr.Row():
+                    to_trad_btn = gr.Button("轉繁體", size="sm", min_width=80)
+                    to_simp_btn = gr.Button("轉簡體", size="sm", min_width=80)
+                    to_trad_btn.click(fn=to_traditional, inputs=[text_input], outputs=[text_input])
+                    to_simp_btn.click(fn=to_simplified, inputs=[text_input], outputs=[text_input])
 
             with gr.Column(scale=2):
                 instruct_input = gr.Textbox(

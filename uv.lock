@@ -1054,6 +1054,29 @@ wheels = [
 ]
 
 [[package]]
+name = "opencc"
+version = "1.3.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/1a/b2/7cc851aba90dce3bc2197c9c79a12ec1af22774731b80d02333575b3645e/opencc-1.3.2.tar.gz", hash = "sha256:f6e41dfe1bbe2c3c4c3e42e441ff0b24c774681d375241b996ea62fe8f70038c", size = 11544457, upload-time = "2026-06-29T04:26:56.867Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/29/40/414bf4fabb56bb6419e2eec2bfa142be531fe5c740a239147edc088df7aa/opencc-1.3.2-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:75c68ead542fb5409a07346b04b99a9c79944931891b41018ddbef0e2807ac60", size = 1949971, upload-time = "2026-06-29T04:28:59.964Z" },
+    { url = "https://files.pythonhosted.org/packages/dc/cd/08bcae31e3ee8ff4f90cbe29829a8c2fba2a0fc4fa10fad6c73e6e506eb7/opencc-1.3.2-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:da1f90c4af63b7ded502eb98cba65d80cac2d687e1f0cecded6e25b80314926a", size = 1856402, upload-time = "2026-06-29T04:25:07.984Z" },
+    { url = "https://files.pythonhosted.org/packages/2c/f8/eeb6635ee3f4695e49ee9b15bf3b7f149dde273fe08acbc3d1088e512f76/opencc-1.3.2-cp310-cp310-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:4a443454f2d7ac0587f0dbc2e457e36378b52d2ac270fa9f4246d00fc1227aa6", size = 2193466, upload-time = "2026-06-29T04:25:58.516Z" },
+    { url = "https://files.pythonhosted.org/packages/e9/f1/78957e19e0016bef92117bb4bdfb078678395937a24e79c012e6022580ae/opencc-1.3.2-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:8e735f0dfc1347654f82a72e7310201b60b25f50fea3e75d5b3b9b49b6bc9245", size = 2227489, upload-time = "2026-06-29T04:26:49.804Z" },
+    { url = "https://files.pythonhosted.org/packages/71/ba/02cf5eed1b200e9b3c3a95ca88583f7ad06c6aba26c51e4634ac59e3e346/opencc-1.3.2-cp310-cp310-win_amd64.whl", hash = "sha256:221b576a02388ab1bca0b44f71db7a59871e2af676623a846b26bfb0ddb87c36", size = 2646127, upload-time = "2026-06-29T04:29:14.22Z" },
+    { url = "https://files.pythonhosted.org/packages/09/8d/8f9f47c9b35eccb10f9335aae622171950fd0a7eabfeff4a10d2fafd9af8/opencc-1.3.2-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:9c97d76632ae3c1599dcf1c1910a4aae75c8c0f1a50146af5fbb6ef26d8e20b6", size = 1951351, upload-time = "2026-06-29T04:29:01.43Z" },
+    { url = "https://files.pythonhosted.org/packages/d0/83/7283c0de98d0668e098daccec4ec8dc06170082fc4b7b4eadcd71eef9365/opencc-1.3.2-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:00a24ac6c0a4a5a94cfba1d708cbbbd769e463601ef96a9b398777f802d776e1", size = 1857779, upload-time = "2026-06-29T04:25:09.436Z" },
+    { url = "https://files.pythonhosted.org/packages/dc/1b/b1ef85ced80d05d98c2933456350062618d052ae466885859a4fe604b8f4/opencc-1.3.2-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:817c2669f4d5a534f69f390a96cf46d69236f502fff02ffc2e8ff2ed03b12e2a", size = 2194974, upload-time = "2026-06-29T04:25:59.979Z" },
+    { url = "https://files.pythonhosted.org/packages/90/44/9a19594c06d37ff9b1ae4d9265419db3c4a084d47f035c2b60342f381d74/opencc-1.3.2-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:cdf881ebd191320464b07b805f160c76184d410aadf09f64613d90aba13f6d4d", size = 2228953, upload-time = "2026-06-29T04:26:51.072Z" },
+    { url = "https://files.pythonhosted.org/packages/53/97/5be6551f8d084043842a9e231534194835c06065b055d6435c40d1af7131/opencc-1.3.2-cp311-cp311-win_amd64.whl", hash = "sha256:12234b9b40b065b06f8351765c7afa29c1ed9f234b98001db03986d6b3db0a3f", size = 2647308, upload-time = "2026-06-29T04:29:15.783Z" },
+    { url = "https://files.pythonhosted.org/packages/26/31/8cb95f1f2ccdedbce95926e434d81344881763e61d89c673746837e2477c/opencc-1.3.2-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:b87457d1189533aa84ebe5c9e19b568795d7b3c25d325ac487960dcf886eba69", size = 1950794, upload-time = "2026-06-29T04:29:02.818Z" },
+    { url = "https://files.pythonhosted.org/packages/66/f0/0f6c453365c03e3bd3ac920b7a0e236d623a8aeffd89ac7f081c024ab200/opencc-1.3.2-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:b454577925dee76eb0e1d9eb3c74403b9158271512e42e73052627405e8c3678", size = 1856945, upload-time = "2026-06-29T04:25:10.779Z" },
+    { url = "https://files.pythonhosted.org/packages/ec/e0/ac9d1e4e1b480aa319f2ee8408e0b8d5f715a46ea404877ba35108c856cf/opencc-1.3.2-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:0432557734cb8ebfc50a6a36f64cf5a43d2ca698f016af6caf95143d30d2efe2", size = 2193757, upload-time = "2026-06-29T04:26:01.595Z" },
+    { url = "https://files.pythonhosted.org/packages/f7/24/af35a4c8f96d711b1529da45af0eab9c2a93ce99ad5289161ce0fb05c863/opencc-1.3.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:4fd4abe481129f386222215afb26aaf77eb5ffe03bb9906b8a44f11a7457aa7b", size = 2227858, upload-time = "2026-06-29T04:26:52.896Z" },
+    { url = "https://files.pythonhosted.org/packages/b1/d5/b6cf13383e55079ac97d74c2c825e39f95f29c1dc047e7cdf79fb0feb590/opencc-1.3.2-cp312-cp312-win_amd64.whl", hash = "sha256:069122e330b84d3b11aa5e35add75f0be0cd5104bad436326f5c84df8a6be959", size = 2647684, upload-time = "2026-06-29T04:29:17.059Z" },
+]
+
+[[package]]
 name = "orjson"
 version = "3.11.8"
 source = { registry = "https://pypi.org/simple" }
@@ -1596,6 +1619,7 @@ dependencies = [
     { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "numpy", version = "2.4.4", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
     { name = "onnxruntime" },
+    { name = "opencc" },
     { name = "psutil" },
     { name = "pydantic" },
     { name = "pydantic-settings" },
@@ -1635,6 +1659,7 @@ requires-dist = [
     { name = "librosa", specifier = ">=0.10" },
     { name = "numpy", specifier = ">=1.24" },
     { name = "onnxruntime", specifier = "<1.24" },
+    { name = "opencc", specifier = ">=1.3.2" },
     { name = "psutil", specifier = ">=5.9" },
     { name = "pydantic", specifier = ">=2.0" },
     { name = "pydantic-settings", specifier = ">=2.0" },

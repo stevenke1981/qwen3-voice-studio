@@ -16,6 +16,7 @@ from src.audio_utils import to_gradio_audio
 from src.config import BUILTIN_SPEAKERS, SUPPORTED_TTS_LANGUAGES
 from src.i18n import t
 from utils.srt_generator import generate_srt
+from utils.text_converter import to_simplified, to_traditional
 
 if TYPE_CHECKING:
     from src.error_handler import ErrorHandler
@@ -92,6 +93,11 @@ def build_custom_voice_tab(
                     lines=6, max_lines=20,
                 )
                 components["cv_text"] = text_input
+                with gr.Row():
+                    to_trad_btn = gr.Button("轉繁體", size="sm", min_width=80)
+                    to_simp_btn = gr.Button("轉簡體", size="sm", min_width=80)
+                    to_trad_btn.click(fn=to_traditional, inputs=[text_input], outputs=[text_input])
+                    to_simp_btn.click(fn=to_simplified, inputs=[text_input], outputs=[text_input])
 
             with gr.Column(scale=1):
                 speaker_dd = gr.Dropdown(

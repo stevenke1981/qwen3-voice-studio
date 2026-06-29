@@ -23,6 +23,7 @@ import soundfile as sf
 
 from src.audio_utils import to_gradio_audio
 from utils.srt_generator import generate_srt
+from utils.text_converter import to_simplified, to_traditional
 
 if TYPE_CHECKING:
     from src.multi_engine import ModelPool
@@ -191,6 +192,9 @@ def build_workflow_tab(
                     value="這是聲音設計的試聽範例，請聆聽音色效果。",
                     lines=3, scale=2,
                 )
+                with gr.Row():
+                    gr.Button("轉繁體", size="sm", min_width=80).click(fn=to_traditional, inputs=[s1_text], outputs=[s1_text])
+                    gr.Button("轉簡體", size="sm", min_width=80).click(fn=to_simplified, inputs=[s1_text], outputs=[s1_text])
                 s1_instruct = gr.Textbox(
                     label="音色描述",
                     placeholder="例：溫柔的女聲，帶有輕微磁性，語速稍慢",
@@ -212,6 +216,9 @@ def build_workflow_tab(
                     value="以上是聲音設計的效果，現在我們用同樣的音色來合成這段新文字。",
                     lines=4, scale=3,
                 )
+                with gr.Row():
+                    gr.Button("轉繁體", size="sm", min_width=80).click(fn=to_traditional, inputs=[s2_text], outputs=[s2_text])
+                    gr.Button("轉簡體", size="sm", min_width=80).click(fn=to_simplified, inputs=[s2_text], outputs=[s2_text])
                 s2_ref_upload = gr.File(
                     label="手動參考音頻（覆蓋 Step 1）",
                     file_types=[".wav", ".mp3"], scale=1,
@@ -230,6 +237,9 @@ def build_workflow_tab(
                 value="第一章：故事的開始，一切都從這裡展開。\n第二章：主角踏上了未知的旅程。\n第三章：困難與挑戰接踵而來。",
                 lines=8,
             )
+            with gr.Row():
+                gr.Button("轉繁體", size="sm", min_width=80).click(fn=to_traditional, inputs=[s3_texts], outputs=[s3_texts])
+                gr.Button("轉簡體", size="sm", min_width=80).click(fn=to_simplified, inputs=[s3_texts], outputs=[s3_texts])
             srt_dd = gr.Dropdown(
                 choices=["none", "uniform", "rate"], value="uniform",
                 label="SRT 模式",
